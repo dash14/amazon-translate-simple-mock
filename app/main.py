@@ -6,7 +6,7 @@ from .init import init_fast_api
 from .errors import error_responses
 from .translators.en import en_translator
 from .translators.ja import ja_translator
-from .types import Settings, TranslatedDocument, TranslateDocumentRequest, TranslateDocumentResponse
+from .types import TranslateSettings, TranslatedDocument, TranslateDocumentRequest, TranslateDocumentResponse, Terminology
 
 app = init_fast_api()
 
@@ -15,7 +15,7 @@ translators = {
     "ja": ja_translator
 }
 
-@app.post("/")
+@app.post("/", response_model_exclude_none=True)
 async def translate(request: TranslateDocumentRequest) -> TranslateDocumentResponse:
     content = b64decode(request.Document.Content).decode('utf-8')
 
@@ -57,8 +57,12 @@ async def translate(request: TranslateDocumentRequest) -> TranslateDocumentRespo
     converted = b64encode(converted.encode("utf-8"))
 
     return TranslateDocumentResponse(
-        AppliedSettings=Settings(Formality="FORMAL", Profanity=""),
         SourceLanguageCode=source_lang,
         TargetLanguageCode=target_lang,
-        TranslatedDocument=TranslatedDocument(Content=converted)
+        TranslatedDocument=TranslatedDocument(Content=converted),
+        AppliedSettings=TranslateSettings(
+            Formality=request.getFormality(),
+            Profanity=request.getProfanity()
+        ),
+        AppliedTerminologies=map(lambda t: Terminology(Name=t), request.TerminologyNames)
     )
