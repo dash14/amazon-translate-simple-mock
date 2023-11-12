@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    image: dash14/translate-mock
+    container_name: translate-mock
+    volumes:
+      - ./app:/code/app
+    ports:
+      - "8080:8080"
+    restart: always
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
