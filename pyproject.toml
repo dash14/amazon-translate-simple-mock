@@ -13,6 +13,7 @@ uvicorn = "^0.23.2"
 pykakasi = "^2.2.1"
 pyokaka = "^1.0.0"
 python-multipart = "^0.0.6"
+inflection = "^0.5.1"
 
 [build-system]
 requires = ["poetry-core"]
