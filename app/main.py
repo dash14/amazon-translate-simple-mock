@@ -1,3 +1,4 @@
+import json
 import re
 from base64 import b64decode, b64encode
 
@@ -55,7 +56,11 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
         if key in content:
             return error
 
-    if source_lang != target_lang:
+    if "EchoRequestBody" in content \
+        or source_lang not in ["ja", "en", "auto"] \
+        or target_lang not in ["ja", "en"]:
+        converted = json.dumps(request.model_dump(by_alias=True, exclude_none=True), indent=2)
+    elif source_lang != target_lang:
         # 変換する
         converted = translators[target_lang](content, content_type)
     else:
