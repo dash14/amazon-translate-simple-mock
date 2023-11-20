@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: prod
-    image: dash14/translate-mock
-    container_name: translate-mock
+    image: dash14/amazon-translate-simple-mock
+    container_name: amazon-translate-simple-mock
     volumes:
       - ./app:/code/app
     ports:
