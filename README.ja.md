@@ -44,7 +44,18 @@ Amazon から得られるエラー情報に近づけるための Pull Request �
 
 ### サービスの起動
 
+#### from Docker Hub
+
 ```sh
+$ docker pull dash14/amazon-translate-simple-mock:latest
+$ docker run -it dash14/amazon-translate-simple-mock
+```
+
+#### from GitHub Repository (開発用)
+
+```sh
+$ git clone https://github.com/dash14/amazon-translate-simple-mock.git
+$ cd amazon-translate-simple-mock/
 $ docker compose up -d
 ```
 

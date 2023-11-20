@@ -45,7 +45,18 @@ original error response if necessary.
 
 ### Start service
 
+#### from Docker Hub
+
 ```sh
+$ docker pull dash14/amazon-translate-simple-mock:latest
+$ docker run -it dash14/amazon-translate-simple-mock
+```
+
+#### from GitHub Repository (for develop)
+
+```sh
+$ git clone https://github.com/dash14/amazon-translate-simple-mock.git
+$ cd amazon-translate-simple-mock/
 $ docker compose up -d
 ```
 
@@ -113,12 +124,6 @@ Response:
         "Formality": "FORMAL"
     }
 }
-```
-
-### Stop service
-
-```sh
-$ docker compose down
 ```
 
 ## License
