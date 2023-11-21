@@ -5,6 +5,11 @@
 
 Amazon Translate リアルタイム翻訳APIの簡易モックです。
 
+![Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdash14%2Famazon-translate-simple-mock%2Fmain%2Fpyproject.toml&query=%24.tool.poetry.version&label=version)
+[![License](https://img.shields.io/github/license/dash14/amazon-translate-simple-mock)](./LICENSE)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dash14/amazon-translate-simple-mock/latest)
+![Docker Pulls](https://img.shields.io/docker/pulls/dash14/amazon-translate-simple-mock)
+
 ## 対応API
 * TranslateText
 * TranslateDocument (text/htmlのみ)
