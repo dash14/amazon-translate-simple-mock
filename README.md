@@ -24,8 +24,8 @@ This is a simple mock for Amazon Translate real-time translation API.
 
 | Source | Target | Behaviors | Example |
 | ------ | ------ | --- | ------- |
-| ja (auto) | en | Convert Japanese to Romaji | `明日は晴れです！` -> `ashita ha hare desu!` |
-| en (auto) | ja | Convert Romaji to Hiragana | `ashita ha hare desu!` -> `あした は はれ です` |
+| ja (auto) | en | Convert Japanese to Romaji | `明日は晴れです` -> `ashita ha hare desu` |
+| en (auto) | ja | Convert Romaji to Hiragana | `ashita ha hare desu` -> `あした は はれ です` |
 | Any | Other than en/ja | Output specified parameters in JSON | (Value specified for parameter) |
 
 ## Message Commands

@@ -1,3 +1,5 @@
+# https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html
+# Retrieved on 2023-11
 SUPPORT_LANGUAGES = {
     "Afrikaans": "af",
     "Albanian": "sq",

@@ -29,7 +29,7 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
 
     if request.source_language_code == "auto":
         if re.match(r"\A[\x00-\x7F]+\Z", content):
-            # すべて ASCII コード: 英語として判定する
+            # All are ASCII codes -> Judge as English
             source_lang = "en"
         else:
             source_lang = "ja"
@@ -50,9 +50,9 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
             media_type="application/x-amz-json-1.1"
         )
 
-    # エラー返却リクエストの判定
+    # Determination of error return request
     for [key, error] in error_responses.items():
-        # 本文中にエラー文字列があればエラーにする
+        # If the error name is included in the content, raise the error.
         if key in content:
             return error
 
@@ -61,10 +61,8 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
         or target_lang not in ["ja", "en"]:
         converted = json.dumps(request.model_dump(by_alias=True, exclude_none=True), indent=2)
     elif source_lang != target_lang:
-        # 変換する
         converted = translators[target_lang](content, content_type)
     else:
-        # 原文のままにする
         converted = content
 
     if request.text:

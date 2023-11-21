@@ -9,7 +9,7 @@ def to_romaji(text: str) -> str:
     return ' '.join(terms)
 
 def en_translator(text: str, content_type: str) -> str:
-    # 日本語をローマ字に変換する
+    # Convert Japanese to Romaji
     if content_type == "text/html":
         data = re.findall(r"<[^>]*>|[^<>]+", text)
         converted = map(lambda t: to_romaji(t) if t[0] != "<" else t , data)

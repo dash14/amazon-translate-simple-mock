@@ -7,8 +7,8 @@ def init_fast_api() -> FastAPI:
     @app.middleware("http")
     async def add_process_time_header(request: Request, call_next):
         if "content-type" in request.headers and request.headers["content-type"] == "application/x-amz-json-1.1":
-            # content-type が "application/x-amz-json-1.1" なので自動でJSONとして
-            # 解釈して展開してくれない課題への対応
+            # content-type is "application/x-amz-json-1.1"
+            # Interpret as JSON
             headers = dict(request.scope['headers'])
             headers[b"content-type"] = b"application/json"
             request.scope["headers"] = [(k, v) for k, v in headers.items()]
@@ -16,7 +16,6 @@ def init_fast_api() -> FastAPI:
             response.headers["content-type"] =  "application/x-amz-json-1.1"
         else:
             response = await call_next(request)
-
         return response
 
     return app

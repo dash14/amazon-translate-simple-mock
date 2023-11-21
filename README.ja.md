@@ -23,8 +23,8 @@ Amazon Translate リアルタイム翻訳APIの簡易モックです。
 
 | Source | Target | 挙動 | Example |
 | ------ | ------ | --- | ------- |
-| ja (auto) | en | 日本語をローマ字に変換する | `明日は晴れです！` -> `ashita ha hare desu!` |
-| en (auto) | ja | ローマ字をひらがなに変換する | `ashita ha hare desu!` -> `あした は はれ です` |
+| ja (auto) | en | 日本語をローマ字に変換する | `明日は晴れです` -> `ashita ha hare desu` |
+| en (auto) | ja | ローマ字をひらがなに変換する | `ashita ha hare desu` -> `あした は はれ です` |
 | 全て | en・ja以外 | 指定したパラメータをJSONで出力する | (パラメータに指定した値) |
 
 ## メッセージコマンド
