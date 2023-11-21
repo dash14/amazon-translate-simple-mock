@@ -57,7 +57,7 @@ $ docker run -it dash14/amazon-translate-simple-mock
 ```sh
 $ git clone https://github.com/dash14/amazon-translate-simple-mock.git
 $ cd amazon-translate-simple-mock/
-$ docker compose up -d
+$ docker compose up -d app
 ```
 
 ### Usage example: Calling TranslateText with aws-cli
