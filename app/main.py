@@ -1,5 +1,6 @@
 import json
 import re
+import asyncio
 from base64 import b64decode, b64encode
 
 from fastapi.responses import JSONResponse
@@ -49,6 +50,12 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
             status_code=400,
             media_type="application/x-amz-json-1.1"
         )
+
+    # @sleep SECONDS
+    m = re.search(r"@sleep\s+(\d+(?:\.\d+)?)", content)
+    if m:
+        sleep_sec = float(m.group(1))
+        await asyncio.sleep(sleep_sec)
 
     # Determination of error return request
     for [key, error] in error_responses.items():
