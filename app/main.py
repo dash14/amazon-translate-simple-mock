@@ -63,7 +63,8 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
         if re.search(f"@raise\s+{key}", content):
             return error
 
-    if "EchoRequestBody" in content \
+    if re.search(f"@return\s+RequestedBody", content):
+        # @return RequestedBody
         or source_lang not in ["ja", "en", "auto"] \
         or target_lang not in ["ja", "en"]:
         converted = json.dumps(request.model_dump(by_alias=True, exclude_none=True), indent=2)
