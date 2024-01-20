@@ -57,10 +57,10 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
         sleep_sec = float(m.group(1))
         await asyncio.sleep(sleep_sec)
 
-    # Determination of error return request
+    # @raise EXCEPTIONS
     for [key, error] in error_responses.items():
         # If the error name is included in the content, raise the error.
-        if key in content:
+        if re.search(f"@raise\s+{key}", content):
             return error
 
     if "EchoRequestBody" in content \
