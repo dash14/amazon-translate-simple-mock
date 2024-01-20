@@ -39,13 +39,14 @@ original error response if necessary.
 
 | Command string | Behavior |
 | ------------ | --- |
-| EchoRequestBody | Returns the JSON of the requested content as-is as the body of the translation result |
-| ThrottlingException | Returns ThrottlingException (status code: 429) |
-| InternalServerException | Returns InternalServerException (status code: 500) |
-| LimitExceededException | Returns LimitExceededException (status code: 400) |
-| ServiceUnavailableException | Returns ServiceUnavailableException (status code: 500) |
-| TooManyRequestsException | Returns TooManyRequestsException (status code: 400) |
-| UnsupportedLanguagePairException | Returns UnsupportedLanguagePairException (status code: 400) |
+| @echo RequestedBody | Returns the requested body as-is as a translation result |
+| @sleep {SECONDS} | Waits for the specified seconds and returns the result. Can be used with other commands |
+| @raise ThrottlingException | Returns ThrottlingException (status code: 429) |
+| @raise InternalServerException | Returns InternalServerException (status code: 500) |
+| @raise LimitExceededException | Returns LimitExceededException (status code: 400) |
+| @raise ServiceUnavailableException | Returns ServiceUnavailableException (status code: 500) |
+| @raise TooManyRequestsException | Returns TooManyRequestsException (status code: 400) |
+| @raise UnsupportedLanguagePairException | Returns UnsupportedLanguagePairException (status code: 400) |
 
 ## Getting Started
 
