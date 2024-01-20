@@ -1,9 +1,9 @@
-import json
 import re
 import asyncio
 from base64 import b64decode, b64encode
 
 from fastapi.responses import JSONResponse
+from fastapi import Request
 from .init import init_fast_api
 from .errors import error_responses
 from .translators.en import en_translator
@@ -19,7 +19,7 @@ translators = {
 }
 
 @app.post("/", response_model_by_alias=True, response_model_exclude_none=True)
-async def translate(request: TranslateRequest) -> TranslateResponse:
+async def translate(request: TranslateRequest, raw_request: Request) -> TranslateResponse:
 
     if request.text:
         content = request.text
@@ -65,13 +65,15 @@ async def translate(request: TranslateRequest) -> TranslateResponse:
 
     if re.search(f"@return\s+RequestedBody", content):
         # @return RequestedBody
+        # Returns the requested body as-is as a translation result.
+        body = (await raw_request.body()).decode('utf-8')
+        converted = body
+    elif source_lang == target_lang \
         or source_lang not in ["ja", "en", "auto"] \
         or target_lang not in ["ja", "en"]:
-        converted = json.dumps(request.model_dump(by_alias=True, exclude_none=True), indent=2)
-    elif source_lang != target_lang:
-        converted = translators[target_lang](content, content_type)
-    else:
         converted = content
+    else: # source_lang != target_lang:
+        converted = translators[target_lang](content, content_type)
 
     if request.text:
         return TranslateResponse(**{
