@@ -60,10 +60,10 @@ async def translate(request: TranslateRequest, raw_request: Request) -> Translat
     # @raise EXCEPTIONS
     for [key, error] in error_responses.items():
         # If the error name is included in the content, raise the error.
-        if re.search(f"@raise\s+{key}", content):
+        if re.search(f"@raise\\s+{key}", content):
             return error
 
-    if re.search(f"@return\s+RequestedBody", content):
+    if re.search(f"@return\\s+RequestedBody", content):
         # @return RequestedBody
         # Returns the requested body as-is as a translation result.
         body = (await raw_request.body()).decode('utf-8')
