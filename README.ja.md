@@ -37,13 +37,14 @@ Amazon から得られるエラー情報に近づけるための Pull Request �
 
 | コマンド文字列 | 挙動 |
 | ------------ | --- |
-| EchoRequestBody | リクエストした内容のJSONをそのまま翻訳結果の本文として返す |
-| ThrottlingException | ThrottlingException (status code: 429) を返却する |
-| InternalServerException | InternalServerException (status code: 500) を返却する |
-| LimitExceededException | LimitExceededException (status code: 400) を返却する |
-| ServiceUnavailableException | ServiceUnavailableException (status code: 500) を返却する |
-| TooManyRequestsException | TooManyRequestsException (status code: 400) を返却する |
-| UnsupportedLanguagePairException | UnsupportedLanguagePairException (status code: 400) を返却する |
+| @echo RequestedBody | リクエストした内容のJSONをそのまま翻訳結果の本文として返す |
+| @sleep {SECONDS} | 指定した秒数だけ待機して応答を返す。他のコマンドと併用可 |
+| @raise ThrottlingException | ThrottlingException (status code: 429) を返却する |
+| @raise InternalServerException | InternalServerException (status code: 500) を返却する |
+| @raise LimitExceededException | LimitExceededException (status code: 400) を返却する |
+| @raise ServiceUnavailableException | ServiceUnavailableException (status code: 500) を返却する |
+| @raise TooManyRequestsException | TooManyRequestsException (status code: 400) を返却する |
+| @raise UnsupportedLanguagePairException | UnsupportedLanguagePairException (status code: 400) を返却する |
 
 ## Getting Started
 
@@ -61,7 +62,7 @@ $ docker run -it dash14/amazon-translate-simple-mock
 ```sh
 $ git clone https://github.com/dash14/amazon-translate-simple-mock.git
 $ cd amazon-translate-simple-mock/
-$ docker compose up -d
+$ docker compose up -d app
 ```
 
 ### 使用例: aws-cliでTranslateTextを実行する
@@ -146,4 +147,3 @@ MIT license です。
 
 対応APIの追加やエラー差異の改善、バグやドキュメント誤記などありましたら、
 ぜひ気軽に Issue や Pull Request をお送りください！
-
