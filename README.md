@@ -39,7 +39,7 @@ original error response if necessary.
 
 | Command string | Behavior |
 | ------------ | --- |
-| @echo RequestedBody | Returns the requested body as-is as a translation result |
+| @return RequestedBody | Returns the requested body as-is as a translation result |
 | @sleep {SECONDS} | Waits for the specified seconds and returns the result. Can be used with other commands |
 | @raise ThrottlingException | Returns ThrottlingException (status code: 429) |
 | @raise InternalServerException | Returns InternalServerException (status code: 500) |

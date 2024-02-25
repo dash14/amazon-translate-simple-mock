@@ -37,7 +37,7 @@ Amazon から得られるエラー情報に近づけるための Pull Request �
 
 | コマンド文字列 | 挙動 |
 | ------------ | --- |
-| @echo RequestedBody | リクエストした内容のJSONをそのまま翻訳結果の本文として返す |
+| @return RequestedBody | リクエストした内容のJSONをそのまま翻訳結果の本文として返す |
 | @sleep {SECONDS} | 指定した秒数だけ待機して応答を返す。他のコマンドと併用可 |
 | @raise ThrottlingException | ThrottlingException (status code: 429) を返却する |
 | @raise InternalServerException | InternalServerException (status code: 500) を返却する |
