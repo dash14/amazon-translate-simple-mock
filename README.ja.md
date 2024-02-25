@@ -10,6 +10,8 @@ Amazon Translate リアルタイム翻訳APIの簡易モックです。
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dash14/amazon-translate-simple-mock/latest)
 ![Docker Pulls](https://img.shields.io/docker/pulls/dash14/amazon-translate-simple-mock)
 
+[Docker Hub上のDocker Image](https://hub.docker.com/r/dash14/amazon-translate-simple-mock)
+
 ## 対応API
 * TranslateText
 * TranslateDocument (text/htmlのみ)
