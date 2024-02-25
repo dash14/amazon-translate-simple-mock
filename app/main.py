@@ -52,7 +52,7 @@ async def translate(request: TranslateRequest, raw_request: Request) -> Translat
         )
 
     # @sleep SECONDS
-    m = re.search(r"@sleep\s+(\d+(?:\.\d+)?)", content)
+    m = re.search(r"@sleep(?:\s|&nbsp;)+(\d+(?:\.\d+)?)", content)
     if m:
         sleep_sec = float(m.group(1))
         await asyncio.sleep(sleep_sec)
@@ -60,10 +60,10 @@ async def translate(request: TranslateRequest, raw_request: Request) -> Translat
     # @raise EXCEPTIONS
     for [key, error] in error_responses.items():
         # If the error name is included in the content, raise the error.
-        if re.search(f"@raise\\s+{key}", content):
+        if re.search(f"@raise(?:\\s|&nbsp;)+{key}", content):
             return error
 
-    if re.search(f"@return\\s+RequestedBody", content):
+    if re.search(f"@return(?:\\s|&nbsp;)+RequestedBody", content):
         # @return RequestedBody
         # Returns the requested body as-is as a translation result.
         body = (await raw_request.body()).decode('utf-8')
