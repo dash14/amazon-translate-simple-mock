@@ -5,7 +5,7 @@ kks = pykakasi.kakasi()
 
 def to_romaji_line(text: str) -> str:
     items = kks.convert(text)
-    terms = list(map(lambda item: item['hepburn'], items))
+    terms = list(map(lambda item: str.strip(item['hepburn']), items))
     return ' '.join(terms)
 
 def to_romaji(text: str) -> str:
