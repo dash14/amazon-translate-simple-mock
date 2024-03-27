@@ -28,7 +28,10 @@ async def translate(request: TranslateRequest, raw_request: Request) -> Translat
         content = b64decode(request.document.content).decode("utf-8")
         content_type = request.document.content_type
 
-    if request.source_language_code == "auto":
+    m = re.search(f"@return(?:\\s|&nbsp;)+SourceLanguageCode(?:\\s|&nbsp;)+(\w+)", content)
+    if m:
+        source_lang = m.group(1)
+    elif request.source_language_code == "auto":
         if re.match(r"\A[\x00-\x7F]+\Z", content):
             # All are ASCII codes -> Judge as English
             source_lang = "en"

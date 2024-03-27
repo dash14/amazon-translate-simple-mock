@@ -48,6 +48,7 @@ original error response if necessary.
 | @raise ServiceUnavailableException | Returns ServiceUnavailableException (status code: 500) |
 | @raise TooManyRequestsException | Returns TooManyRequestsException (status code: 400) |
 | @raise UnsupportedLanguagePairException | Returns UnsupportedLanguagePairException (status code: 400) |
+| @return SourceLanguageCode {code} | Returns the specified code in the SourceLanguageCode field. Cannot be used with @raise |
 
 ## Getting Started
 

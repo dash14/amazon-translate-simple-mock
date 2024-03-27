@@ -47,6 +47,7 @@ Amazon から得られるエラー情報に近づけるための Pull Request �
 | @raise ServiceUnavailableException | ServiceUnavailableException (status code: 500) を返却する |
 | @raise TooManyRequestsException | TooManyRequestsException (status code: 400) を返却する |
 | @raise UnsupportedLanguagePairException | UnsupportedLanguagePairException (status code: 400) を返却する |
+| @return SourceLanguageCode {code} | SourceLanguageCodeフィールドに指定したコードを入れて返却する。@raiseとは併用不可 |
 
 ## Getting Started
 
