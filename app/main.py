@@ -28,7 +28,7 @@ async def translate(request: TranslateRequest, raw_request: Request) -> Translat
         content = b64decode(request.document.content).decode("utf-8")
         content_type = request.document.content_type
 
-    m = re.search(f"@return(?:\\s|&nbsp;)+SourceLanguageCode(?:\\s|&nbsp;)+(\w+)", content)
+    m = re.search("@return(?:\\s|&nbsp;)+SourceLanguageCode(?:\\s|&nbsp;)+(\w+)", content)
     if m:
         source_lang = m.group(1)
     elif request.source_language_code == "auto":
