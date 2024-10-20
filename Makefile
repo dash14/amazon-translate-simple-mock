@@ -16,7 +16,7 @@ build:
 	@if ! docker buildx ls | grep -q container-builder; then\
 		docker buildx create --platform ${PLATFORMS} --name container-builder --use;\
 	fi
-	docker buildx build --platform ${PLATFORMS} \
+	docker buildx build --no-cache --platform ${PLATFORMS} \
 		-t dash14/amazon-translate-simple-mock:${VERSION} \
 		-t dash14/amazon-translate-simple-mock:latest \
 		. --push
