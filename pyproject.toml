@@ -7,12 +7,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.104.0"
-pydantic = "^2.4.2"
-uvicorn = "^0.23.2"
+fastapi = "^0.115.2"
+pydantic = "^2.9.2"
+uvicorn = "^0.32.0"
 pykakasi = "^2.2.1"
 pyokaka = "^1.0.0"
-python-multipart = "^0.0.6"
+python-multipart = "^0.0.13"
 inflection = "^0.5.1"
 
 [build-system]
