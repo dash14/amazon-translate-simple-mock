@@ -1,12 +1,24 @@
 import re
 import pykakasi
+from functools import reduce
 
 kks = pykakasi.kakasi()
+
+def space_appender(cum, term) -> str:
+    if not term:
+        return cum
+    if len(cum) == 0:
+        return [term]
+    if re.search(r'\A[\.,?!]\Z', term):
+        return [*cum, term]
+    else: # with symbol
+        return [*cum, ' ', term]
 
 def to_romaji_line(text: str) -> str:
     items = kks.convert(text)
     terms = list(map(lambda item: str.strip(item['hepburn']), items))
-    return ' '.join(terms)
+    texts = reduce(space_appender, terms, [])
+    return ''.join(texts)
 
 def to_romaji(text: str) -> str:
     lines = text.split("\n")
