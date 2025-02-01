@@ -1,7 +1,7 @@
 FROM python:3.12-alpine as builder
 WORKDIR /code
 RUN apk add build-base libffi-dev
-RUN pip install --upgrade pip && pip install poetry
+RUN pip install --upgrade pip && pip install poetry==1.8.5
 COPY pyproject.toml poetry.lock ./
 RUN poetry export --without-hashes -f requirements.txt > requirements.txt
 RUN pip install -r requirements.txt
