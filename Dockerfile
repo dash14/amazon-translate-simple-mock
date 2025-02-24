@@ -1,4 +1,10 @@
 FROM python:3.12-alpine as builder
+
+LABEL org.opencontainers.image.name "amazon-translate-simple-mock"
+LABEL org.opencontainers.image.authors "dash14.ack@gmail.com"
+LABEL org.opencontainers.image.url https://github.com/dash14/amazon-translate-simple-mock
+LABEL org.opencontainers.image.source https://github.com/dash14/amazon-translate-simple-mock
+
 WORKDIR /code
 RUN apk add build-base libffi-dev
 RUN pip install --upgrade pip && pip install poetry==1.8.5

@@ -15,6 +15,7 @@ services:
 
   app-image:
     image: dash14/amazon-translate-simple-mock:latest
+    # image: ghcr.io/dash14/amazon-translate-simple-mock:latest
     container_name: amazon-translate-simple-mock-image
     ports:
       - "8080:8080"

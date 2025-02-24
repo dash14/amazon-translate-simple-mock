@@ -10,7 +10,8 @@ This is a simple mock for Amazon Translate real-time translation API.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dash14/amazon-translate-simple-mock/latest)
 ![Docker Pulls](https://img.shields.io/docker/pulls/dash14/amazon-translate-simple-mock)
 
-[Docker Image on Docker Hub](https://hub.docker.com/r/dash14/amazon-translate-simple-mock)
+[Docker Image on Docker Hub](https://hub.docker.com/r/dash14/amazon-translate-simple-mock)  
+[Docker Image on ghcr.io](https://github.com/users/dash14/packages/container/package/amazon-translate-simple-mock)
 
 ## Supported APIs
 * TranslateText

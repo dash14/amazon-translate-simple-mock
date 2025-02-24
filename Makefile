@@ -19,4 +19,6 @@ build:
 	docker buildx build --no-cache --platform ${PLATFORMS} \
 		-t dash14/amazon-translate-simple-mock:${VERSION} \
 		-t dash14/amazon-translate-simple-mock:latest \
+		-t ghcr.io/dash14/amazon-translate-simple-mock:${VERSION} \
+		-t ghcr.io/dash14/amazon-translate-simple-mock:latest \
 		. --push
