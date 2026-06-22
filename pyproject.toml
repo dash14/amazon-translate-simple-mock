@@ -1,6 +1,6 @@
 [project]
 name = "app"
-version = "0.2.7"
+version = "0.2.8"
 description = ""
 authors = [{name = "dash14", email = "dash14.ack@gmail.com"}]
 readme = "README.md"
