@@ -140,6 +140,26 @@ $ aws translate translate-document \
 $ docker compose down
 ```
 
+## テストの実行
+
+### セットアップ
+
+```sh
+$ poetry install --with dev
+```
+
+### 実行
+
+```sh
+# 全テストを実行
+$ poetry run pytest
+
+# 単体テストのみ
+$ poetry run pytest tests/unit/
+
+# APIテストのみ
+$ poetry run pytest tests/api/
+```
 
 ## License
 

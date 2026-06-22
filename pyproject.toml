@@ -15,6 +15,18 @@ pyokaka = "^1.0.0"
 python-multipart = "^0.0.19"
 inflection = "^0.5.1"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.1.1"
+pytest-asyncio = "^1.4.0"
+pytest-mock = "^3.15.1"
+pytest-cov = "^7.1.0"
+httpx = "^0.28.1"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--cov=app --cov-report=term-missing"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

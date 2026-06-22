@@ -136,6 +136,27 @@ Response:
 }
 ```
 
+## Running Tests
+
+### Setup
+
+```sh
+$ poetry install --with dev
+```
+
+### Run
+
+```sh
+# Run all tests
+$ poetry run pytest
+
+# Unit tests only
+$ poetry run pytest tests/unit/
+
+# API tests only
+$ poetry run pytest tests/api/
+```
+
 ## License
 
 Under the MIT license.  
