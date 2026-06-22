@@ -2,28 +2,51 @@ name: CI
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  lint-and-test:
+  changes:
     runs-on: ubuntu-latest
-
+    outputs:
+      any_changed: ${{ steps.changed.outputs.any_changed }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Check for testable changes
+        id: changed
+        uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
+        with:
+          files_ignore: |
+            *.md
+            LICENSE
+            .gitignore
+
+  ci:
+    needs: changes
+    if: needs.changes.outputs.any_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.12"
 
       - name: Install Poetry
-        uses: snok/install-poetry@v1
+        uses: snok/install-poetry@a783c322200f0519c7926aa6faa857c4e23e9263 # v1.4.2
         with:
           virtualenvs-in-project: true
 
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .venv
           key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
@@ -33,10 +56,11 @@ jobs:
       - name: Install dependencies
         run: poetry install --with dev
 
+      - name: Format check (ruff)
+        run: poetry run ruff format --check .
+
       - name: Lint (ruff)
-        run: |
-          poetry run ruff format --check .
-          poetry run ruff check .
+        run: poetry run ruff check .
 
       - name: Test (pytest)
         run: poetry run pytest
