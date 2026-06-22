@@ -7,5 +7,12 @@
   ],
   "schedule": ["* * * * 1"],
   "minimumReleaseAge": "14 days",
-  "internalChecksFilter": "strict"
+  "internalChecksFilter": "strict",
+  "packageRules": [
+    {
+      "description": "Self-hosted image (dash14/amazon-translate-simple-mock) is exempt from minimumReleaseAge.",
+      "matchPackageNames": ["/^dash14\\/amazon-translate-simple-mock/"],
+      "minimumReleaseAge": "0 days"
+    }
+  ]
 }
