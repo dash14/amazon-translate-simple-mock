@@ -1,4 +1,4 @@
-FROM python:3.12-alpine@sha256:6d43704baacd1bfbe7c295d7f13079d5d8104ed33568873133f8fc69980419df AS builder
+FROM python:3.14-alpine@sha256:26730869004e2b9c4b9ad09cab8625e81d256d1ce97e72df5520e806b1709f92 AS builder
 
 WORKDIR /code
 RUN apk add build-base libffi-dev
@@ -10,7 +10,7 @@ ENV UV_LINK_MODE=copy \
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-FROM python:3.12-alpine@sha256:6d43704baacd1bfbe7c295d7f13079d5d8104ed33568873133f8fc69980419df AS prod
+FROM python:3.14-alpine@sha256:26730869004e2b9c4b9ad09cab8625e81d256d1ce97e72df5520e806b1709f92 AS prod
 
 LABEL org.opencontainers.image.name="amazon-translate-simple-mock" \
       org.opencontainers.image.authors="dash14.ack@gmail.com" \
