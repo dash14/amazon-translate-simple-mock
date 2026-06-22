@@ -25,6 +25,7 @@ jobs:
             *.md
             LICENSE
             .gitignore
+            renovate.json
 
   ci:
     needs: changes
