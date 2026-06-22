@@ -1,4 +1,4 @@
-from app.translators.en import to_romaji_line, to_romaji, en_translator
+from app.translators.en import en_translator, to_romaji, to_romaji_line
 
 
 class TestToRomajiLine:

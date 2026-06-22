@@ -21,25 +21,31 @@ def test_missing_target_language_code(post):
 
 
 def test_empty_body(client):
-    response = client.post("/", content="", headers={"Content-Type": "application/x-amz-json-1.1"})
+    response = client.post(
+        "/", content="", headers={"Content-Type": "application/x-amz-json-1.1"}
+    )
     assert response.status_code == 422
 
 
 def test_document_missing_content(post):
-    response = post({
-        "Document": {"ContentType": "text/html"},
-        "SourceLanguageCode": "ja",
-        "TargetLanguageCode": "en",
-    })
+    response = post(
+        {
+            "Document": {"ContentType": "text/html"},
+            "SourceLanguageCode": "ja",
+            "TargetLanguageCode": "en",
+        }
+    )
     assert response.status_code == 422
 
 
 def test_document_missing_content_type(post):
-    response = post({
-        "Document": {"Content": "aGVsbG8="},
-        "SourceLanguageCode": "ja",
-        "TargetLanguageCode": "en",
-    })
+    response = post(
+        {
+            "Document": {"Content": "aGVsbG8="},
+            "SourceLanguageCode": "ja",
+            "TargetLanguageCode": "en",
+        }
+    )
     assert response.status_code == 422
 
 

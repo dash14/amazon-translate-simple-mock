@@ -21,6 +21,13 @@ pytest-asyncio = "^1.4.0"
 pytest-mock = "^3.15.1"
 pytest-cov = "^7.1.0"
 httpx = "^0.28.1"
+ruff = "^0.15.18"
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

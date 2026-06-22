@@ -1,6 +1,8 @@
 import base64
+
 import pytest
 from starlette.testclient import TestClient
+
 from app.main import app
 
 AMZ_CONTENT_TYPE = "application/x-amz-json-1.1"
@@ -22,6 +24,7 @@ def post(client, amz_headers):
     def _post(payload: dict, headers: dict | None = None):
         h = {**amz_headers, **(headers or {})}
         return client.post("/", json=payload, headers=h)
+
     return _post
 
 
@@ -34,6 +37,7 @@ def text_payload():
         if terminology_names is not None:
             p["TerminologyNames"] = terminology_names
         return p
+
     return _make
 
 
@@ -48,4 +52,5 @@ def doc_payload():
             "SourceLanguageCode": source,
             "TargetLanguageCode": target,
         }
+
     return _make

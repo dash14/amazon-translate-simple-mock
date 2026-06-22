@@ -1,9 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field, model_validator
 from typing import Optional
+
 from inflection import camelize
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
 
 class AmazonBaseModel(BaseModel):
     model_config = ConfigDict(alias_generator=camelize)
+
 
 class TranslateDocument(AmazonBaseModel):
     content: str
@@ -14,6 +17,7 @@ class TranslateSettings(AmazonBaseModel):
     brevity: Optional[str] = None
     formality: Optional[str] = None
     profanity: Optional[str] = None
+
 
 class TranslateRequest(AmazonBaseModel):
     settings: Optional[TranslateSettings] = None
@@ -27,17 +31,14 @@ class TranslateRequest(AmazonBaseModel):
         "json_schema_extra": {
             "examples": [
                 {
-                    "Settings": {
-                        "Profanity": "MASK",
-                        "Formality": "FORMAL"
-                    },
+                    "Settings": {"Profanity": "MASK", "Formality": "FORMAL"},
                     "SourceLanguageCode": "auto",
                     "TargetLanguageCode": "en",
                     "TerminologyNames": [],
                     "Document": {
                         "Content": "5piO5pel44Gu5aSp5rCX44Gv5pm044KM44Gn44GZ44CC",
-                        "ContentType": "text/html"
-                    }
+                        "ContentType": "text/html",
+                    },
                 }
             ]
         }
@@ -61,25 +62,29 @@ class TranslateRequest(AmazonBaseModel):
         else:
             return self.settings.profanity
 
-    @model_validator(mode='after')
-    def check_text_or_document(self) -> 'TranslateRequest':
+    @model_validator(mode="after")
+    def check_text_or_document(self) -> "TranslateRequest":
         if not self.text and not self.document:
-            raise ValueError('Either Text or Document is required')
+            raise ValueError("Either Text or Document is required")
         if self.text and self.document:
-            raise ValueError('Cannot specify both Text and Document')
+            raise ValueError("Cannot specify both Text and Document")
 
         return self
+
 
 class TranslatedTerminology(AmazonBaseModel):
     source_text: str
     target_text: str
 
+
 class Terminology(AmazonBaseModel):
     name: str
     terms: list[TranslatedTerminology] = Field(default_factory=list)
 
+
 class TranslatedDocument(AmazonBaseModel):
     content: str
+
 
 class TranslateResponse(AmazonBaseModel):
     applied_settings: TranslateSettings

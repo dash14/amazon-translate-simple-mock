@@ -76,31 +76,33 @@ class TestResponseStructure:
 
 class TestSettings:
     def test_formality_formal_reflected(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            settings={"Formality": "FORMAL"}
-        ))
+        response = post(
+            text_payload(
+                "hello", source="en", target="ja", settings={"Formality": "FORMAL"}
+            )
+        )
         assert response.json()["AppliedSettings"]["Formality"] == "FORMAL"
 
     def test_formality_informal_reflected(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            settings={"Formality": "INFORMAL"}
-        ))
+        response = post(
+            text_payload(
+                "hello", source="en", target="ja", settings={"Formality": "INFORMAL"}
+            )
+        )
         assert response.json()["AppliedSettings"]["Formality"] == "INFORMAL"
 
     def test_profanity_mask_reflected(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            settings={"Profanity": "MASK"}
-        ))
+        response = post(
+            text_payload(
+                "hello", source="en", target="ja", settings={"Profanity": "MASK"}
+            )
+        )
         assert response.json()["AppliedSettings"]["Profanity"] == "MASK"
 
     def test_brevity_on_reflected(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            settings={"Brevity": "ON"}
-        ))
+        response = post(
+            text_payload("hello", source="en", target="ja", settings={"Brevity": "ON"})
+        )
         assert response.json()["AppliedSettings"]["Brevity"] == "ON"
 
     def test_no_settings_applied_settings_keys_absent(self, post, text_payload):
@@ -113,29 +115,30 @@ class TestSettings:
 
 class TestTerminologyNames:
     def test_single_terminology_in_response(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            terminology_names=["custom"]
-        ))
+        response = post(
+            text_payload(
+                "hello", source="en", target="ja", terminology_names=["custom"]
+            )
+        )
         terminologies = response.json()["AppliedTerminologies"]
         assert len(terminologies) == 1
         assert terminologies[0]["Name"] == "custom"
 
     def test_multiple_terminologies_in_response(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            terminology_names=["t1", "t2"]
-        ))
+        response = post(
+            text_payload(
+                "hello", source="en", target="ja", terminology_names=["t1", "t2"]
+            )
+        )
         terminologies = response.json()["AppliedTerminologies"]
         names = [t["Name"] for t in terminologies]
         assert "t1" in names
         assert "t2" in names
 
     def test_empty_terminology_names(self, post, text_payload):
-        response = post(text_payload(
-            "hello", source="en", target="ja",
-            terminology_names=[]
-        ))
+        response = post(
+            text_payload("hello", source="en", target="ja", terminology_names=[])
+        )
         assert response.json()["AppliedTerminologies"] == []
 
     def test_no_terminology_names_field(self, post, text_payload):

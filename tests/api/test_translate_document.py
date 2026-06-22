@@ -32,7 +32,9 @@ class TestBasicDocumentTranslation:
         assert "</p>" in decoded
 
     def test_plain_text_document(self, post, doc_payload):
-        response = post(doc_payload("日本語", content_type="text/plain", source="ja", target="en"))
+        response = post(
+            doc_payload("日本語", content_type="text/plain", source="ja", target="en")
+        )
         assert response.status_code == 200
         content = response.json()["TranslatedDocument"]["Content"]
         decoded = base64.b64decode(content).decode("utf-8")

@@ -1,4 +1,4 @@
-from app.translators.ja import to_hiragana, ja_translator
+from app.translators.ja import ja_translator, to_hiragana
 
 
 class TestToHiragana:

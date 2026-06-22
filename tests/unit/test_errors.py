@@ -1,4 +1,5 @@
 import json
+
 from app.errors import error_responses
 
 EXPECTED_ERRORS = {
@@ -68,4 +69,6 @@ class TestErrorBody:
     def test_all_errors_type_matches_key(self):
         for key in error_responses:
             body = self._parse_body(key)
-            assert body["__type"] == key, f"{key} has mismatched __type: {body['__type']}"
+            assert body["__type"] == key, (
+                f"{key} has mismatched __type: {body['__type']}"
+            )

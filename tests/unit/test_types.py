@@ -1,6 +1,10 @@
 import pytest
 from pydantic import ValidationError
-from app.types import TranslateRequest, TranslateDocument, TranslateSettings, TranslateResponse
+
+from app.types import (
+    TranslateRequest,
+    TranslateResponse,
+)
 
 
 def make_request(**kwargs):
@@ -9,7 +13,9 @@ def make_request(**kwargs):
 
 class TestTranslateRequestValidation:
     def test_text_only_valid(self):
-        req = make_request(Text="hello", SourceLanguageCode="en", TargetLanguageCode="ja")
+        req = make_request(
+            Text="hello", SourceLanguageCode="en", TargetLanguageCode="ja"
+        )
         assert req.text == "hello"
         assert req.document is None
 
@@ -140,25 +146,29 @@ class TestGetterMethods:
 
 class TestTranslateResponseSerialization:
     def test_response_camelcase_output(self):
-        resp = TranslateResponse.model_validate({
-            "SourceLanguageCode": "ja",
-            "TargetLanguageCode": "en",
-            "TranslatedText": "hello",
-            "AppliedSettings": {},
-            "AppliedTerminologies": [],
-        })
+        resp = TranslateResponse.model_validate(
+            {
+                "SourceLanguageCode": "ja",
+                "TargetLanguageCode": "en",
+                "TranslatedText": "hello",
+                "AppliedSettings": {},
+                "AppliedTerminologies": [],
+            }
+        )
         data = resp.model_dump(by_alias=True, exclude_none=True)
         assert "TranslatedText" in data
         assert "SourceLanguageCode" in data
         assert "TargetLanguageCode" in data
 
     def test_translated_document_excluded_when_none(self):
-        resp = TranslateResponse.model_validate({
-            "SourceLanguageCode": "ja",
-            "TargetLanguageCode": "en",
-            "TranslatedText": "hello",
-            "AppliedSettings": {},
-            "AppliedTerminologies": [],
-        })
+        resp = TranslateResponse.model_validate(
+            {
+                "SourceLanguageCode": "ja",
+                "TargetLanguageCode": "en",
+                "TranslatedText": "hello",
+                "AppliedSettings": {},
+                "AppliedTerminologies": [],
+            }
+        )
         data = resp.model_dump(by_alias=True, exclude_none=True)
         assert "TranslatedDocument" not in data
