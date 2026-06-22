@@ -14,7 +14,7 @@ services:
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
 
   app-image:
-    image: dash14/amazon-translate-simple-mock:latest
+    image: dash14/amazon-translate-simple-mock:latest@sha256:61a95acb5299cd05f1d8c42a07ff30a49b7d274e91ec7a0017db5d43f4c9c8fa
     # image: ghcr.io/dash14/amazon-translate-simple-mock:latest
     container_name: amazon-translate-simple-mock-image
     ports:
