@@ -5,7 +5,7 @@
 
 This is a simple mock for Amazon Translate real-time translation API.
 
-![Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdash14%2Famazon-translate-simple-mock%2Fmain%2Fpyproject.toml&query=%24.tool.poetry.version&label=version)
+![Version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdash14%2Famazon-translate-simple-mock%2Fmain%2Fpyproject.toml&query=%24.project.version&label=version)
 [![License](https://img.shields.io/github/license/dash14/amazon-translate-simple-mock)](./LICENSE)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dash14/amazon-translate-simple-mock/latest)
 ![Docker Pulls](https://img.shields.io/docker/pulls/dash14/amazon-translate-simple-mock)
@@ -141,20 +141,20 @@ Response:
 ### Setup
 
 ```sh
-$ poetry install --with dev
+$ uv sync
 ```
 
 ### Run
 
 ```sh
 # Run all tests
-$ poetry run pytest
+$ uv run pytest
 
 # Unit tests only
-$ poetry run pytest tests/unit/
+$ uv run pytest tests/unit/
 
 # API tests only
-$ poetry run pytest tests/api/
+$ uv run pytest tests/api/
 ```
 
 ## License
